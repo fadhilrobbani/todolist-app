@@ -30,4 +30,16 @@ public class TodoListServiceTest {
     void testDelete(){
         todoListService.delete(8);
     }
+
+    @Test
+    void testUpdate(){
+        TodoList todoList = new TodoList("kenapa aku ganteng");
+        todoListService.update(todoList,1);
+    }
+
+    @Test
+    void testSelectById(){
+        todoListService.findById(5395);
+        assertNotNull(todoListService);
+    }
 }

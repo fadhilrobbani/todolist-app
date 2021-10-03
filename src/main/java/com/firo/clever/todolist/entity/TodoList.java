@@ -13,6 +13,17 @@ public class TodoList {
         this.todo = todo;
     }
 
+    public TodoList() {
+    }
+
+    @Override
+    public String toString() {
+        return "TodoList{" +
+                "id=" + id +
+                ", todo='" + todo + '\'' +
+                '}';
+    }
+
     public Integer getId() {
         return id;
     }

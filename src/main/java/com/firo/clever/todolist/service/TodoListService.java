@@ -6,7 +6,7 @@ public interface TodoListService {
 
     void insert(TodoList todoList);
     void delete(Integer id);
-    void update(Integer id);
+    void update(TodoList todoList,Integer id);
     void findById(Integer id);
     void findAll();
 }

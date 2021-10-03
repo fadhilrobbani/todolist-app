@@ -19,13 +19,19 @@ public class TodoListServiceImpl implements TodoListService{
     }
 
     @Override
-    public void update(Integer id) {
-
+    public void update(TodoList todoList,Integer id) {
+        todoListRepository.updateWhere(todoList,id);
     }
 
     @Override
-    public void findById(Integer id) {
+    public void findById(Integer id){
+       var result = todoListRepository.selectById(id);
+       try{
+           System.out.println("Todo -> id: "+result.getId()+" | todo: "+result.getTodo());
 
+       }catch (NullPointerException e){
+           System.out.println("todo id: "+id+" tidak tersedia");
+       }
     }
 
     @Override
