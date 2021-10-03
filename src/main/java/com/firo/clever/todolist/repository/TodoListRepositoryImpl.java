@@ -4,7 +4,9 @@ import com.firo.clever.todolist.entity.TodoList;
 import com.firo.clever.todolist.util.ConnectionUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class TodoListRepositoryImpl implements TodoListRepository {
 
@@ -111,7 +113,32 @@ public class TodoListRepositoryImpl implements TodoListRepository {
     }
 
     @Override
-    public void selectAll() {
+    public List<TodoList> selectAll() {
+        try(Connection connection = ConnectionUtil.getDataSource().getConnection()){
+            try(Statement statement = connection.createStatement()){
+                String sql = "select*from tbl_todolist;";
 
+                try (ResultSet resultSet = statement.executeQuery(sql)){
+
+                    List<TodoList> listTodo = new ArrayList<>();
+                    while (resultSet.next()){
+                        Integer id = resultSet.getInt("id");
+                        String todo = resultSet.getString("todo");
+                        TodoList todoList = new TodoList(id,todo);
+                        listTodo.add(todoList);
+                    }
+
+                    return listTodo;
+
+                }catch (SQLException e){
+                    throw new RuntimeException(e);
+                }
+
+            }catch (SQLException e){
+                throw new RuntimeException(e);
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 }

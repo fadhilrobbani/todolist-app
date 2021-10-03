@@ -9,19 +9,18 @@ import org.junit.jupiter.api.Test;
 
 public class TodoListServiceTest {
 
-    private TodoListRepository todoListRepository;
     private TodoListService todoListService;
 
     @BeforeEach
     @Test
     void setUp(){
-        todoListRepository = new TodoListRepositoryImpl();
+        TodoListRepository todoListRepository = new TodoListRepositoryImpl();
         todoListService = new TodoListServiceImpl();
     }
 
     @Test
     void testInsert(){
-        TodoList todo = new TodoList("aku mau makan nanti");
+        TodoList todo = new TodoList("apa lihat-lihat");
         todoListService.insert(todo);
         assertNotNull(todo.getId());
     }
@@ -41,5 +40,10 @@ public class TodoListServiceTest {
     void testSelectById(){
         todoListService.findById(5395);
         assertNotNull(todoListService);
+    }
+
+    @Test
+    void testSelectAll(){
+        todoListService.findAll();
     }
 }

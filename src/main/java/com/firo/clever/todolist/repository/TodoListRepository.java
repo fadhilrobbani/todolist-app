@@ -10,5 +10,5 @@ public interface TodoListRepository {
     void deleteFrom(Integer id);
     void updateWhere(TodoList todoList,Integer id);
     TodoList selectById(Integer id);
-    void selectAll();
+    List<TodoList> selectAll();
 }

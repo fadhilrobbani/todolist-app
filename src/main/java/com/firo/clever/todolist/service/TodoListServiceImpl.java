@@ -36,6 +36,7 @@ public class TodoListServiceImpl implements TodoListService{
 
     @Override
     public void findAll() {
-
+       var todolist =  todoListRepository.selectAll();
+       todolist.forEach(System.out::println);
     }
 }
